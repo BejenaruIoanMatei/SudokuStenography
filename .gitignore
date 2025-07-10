@@ -1,0 +1,8 @@
+# Virtual env
+venv
+
+# DB
+core/*.sqlite3
+
+# Sensitive stuff
+.env
