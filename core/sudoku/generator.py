@@ -35,3 +35,16 @@ def generate_sudoku(empty_cells=40):
             board[row][col] = 0
             count += 1
     return board
+
+def encode_message_in_sudoku(grid, message):
+    flat_grid = sum(grid, [])
+    msg_index = 0
+    encoded_digits = [(ord(c) % 9) + 1 for c in message]
+
+    for i in range(len(flat_grid)):
+        if flat_grid[i] == 0 and msg_index < len(encoded_digits):
+            flat_grid[i] = encoded_digits[msg_index]
+            msg_index += 1
+
+    encoded_grid = [flat_grid[i:i + 9] for i in range(0, 81, 9)]
+    return encoded_grid

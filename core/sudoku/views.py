@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import EncodeForm
 from .generator import generate_sudoku
+from .generator import encode_message_in_sudoku
 
 DIFFICULTY_MAP = {
     'easy': 30,
@@ -16,10 +17,11 @@ def encode_view(request):
             difficulty = form.cleaned_data['difficulty']
             empty_cells = DIFFICULTY_MAP.get(difficulty, 40)
             sudoku_grid = generate_sudoku(empty_cells=empty_cells)
+            sudoku_encoded = encode_message_in_sudoku(sudoku_grid, message)
 
             context = {
                 'form': form,
-                'sudoku': sudoku_grid,
+                'sudoku': sudoku_encoded,
                 'message': message,
                 'difficulty': difficulty,
             }
