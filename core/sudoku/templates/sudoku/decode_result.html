@@ -1,0 +1,6 @@
+{% extends 'sudoku/base.html' %}
+{% block content %}
+  <h2>Rezultatul decodării</h2>
+  <p><strong>Mesaj decodificat:</strong> {{ message }}</p>
+  <a href="{% url 'decode' %}">Încearcă altul</a>
+{% endblock %}

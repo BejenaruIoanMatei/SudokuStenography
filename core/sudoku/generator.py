@@ -38,13 +38,17 @@ def generate_sudoku(empty_cells=40):
 
 def encode_message_in_sudoku(grid, message):
     flat_grid = sum(grid, [])
-    msg_index = 0
-    encoded_digits = [(ord(c) % 9) + 1 for c in message]
+    bits = ''.join(f"{ord(c):08b}" for c in message)
+    bit_index = 0
+
+    available_slots = sum(1 for cell in flat_grid if cell != 0)
+    if available_slots < len(bits):
+        raise ValueError("Not enough space in the Sudoku grid to encode the message.")
 
     for i in range(len(flat_grid)):
-        if flat_grid[i] == 0 and msg_index < len(encoded_digits):
-            flat_grid[i] = encoded_digits[msg_index]
-            msg_index += 1
+        if flat_grid[i] != 0 and bit_index < len(bits):
+            flat_grid[i] = (flat_grid[i] & ~1) | int(bits[bit_index])
+            bit_index += 1
 
-    encoded_grid = [flat_grid[i:i + 9] for i in range(0, 81, 9)]
-    return encoded_grid
+    return [flat_grid[i:i+9] for i in range(0, 81, 9)]
+
