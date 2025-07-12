@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoku Steganografie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f9f9f9;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🧩 Sudoku Steganografie</h1>
+    <nav>
+        <a href="{% url 'encode' %}">Ascunde mesaj</a>
+        <a href="#">Decodează mesaj</a> <!-- îl adaugi când e gata -->
+        <a href="/">Acasă</a>
+    </nav>
+</header>
+
+<div class="container">
+    {% block content %}
+    <!-- Aici se va injecta conținutul din encode.html, etc. -->
+    {% endblock %}
+</div>
+
+<footer>
+    <p>&copy; 2025 Proiect licență • Sudoku + Steganografie</p>
+</footer>
+
+</body>
+</html>

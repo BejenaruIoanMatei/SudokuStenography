@@ -1,0 +1,9 @@
+{% extends "sudoku/base.html" %}
+{% block content %}
+  <h2>Ascunde un mesaj în Sudoku</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Generează Sudoku</button>
+  </form>
+{% endblock %}

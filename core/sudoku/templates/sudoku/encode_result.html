@@ -1,0 +1,20 @@
+{% extends "sudoku/base.html" %}
+{% block content %}
+  <h2>Mesajul a fost ascuns într-un Sudoku!</h2>
+  <p><strong>Mesaj:</strong> {{ message }}</p>
+  <p><strong>Dificultate:</strong> {{ difficulty }}</p>
+
+  <table style="border-collapse: collapse;">
+    {% for row in sudoku %}
+      <tr>
+        {% for cell in row %}
+          <td style="border: 1px solid #000; width: 30px; height: 30px; text-align: center;">
+            {{ cell|default:" " }}
+          </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+
+  <a href="{% url 'encode' %}">Encodează alt mesaj</a>
+{% endblock %}
